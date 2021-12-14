@@ -1,6 +1,6 @@
 import telebot
 from module import esolve
-bot = telebot.TeleBot("5042001275:AAEyml5ZLP1tJqQh4zi8XxsqTQ_ZuAXRgB8")
+bot = telebot.TeleBot("API TOKEN")
 
 def is_joined(user_id):
   try:
