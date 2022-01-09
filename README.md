@@ -1,4 +1,4 @@
-# ESolver Bot
+# Tenglama Bot
 
 ## Tenglamalarni yechuvchi Telegram bot
 
