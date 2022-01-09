@@ -14,11 +14,17 @@ def is_joined(user_id):
 @bot.message_handler(commands=['start'])
 def welcome(message):
     global keyboard
+    print(len(str(open("members.txt", "r").read()).split(","))-1)
+    with open("members.txt", "a") as myfile:
+        if(not str(message.chat.id) in str(open("members.txt", "r").read())):
+            myfile.write(str(message.chat.id)+",")
+
+
     bot.send_message(message.chat.id, f"Salom {message.from_user.first_name}👋\nBot'ga xush kelibsiz\n\nBot haqida - /help\nQayta boshlash - /start")
     if is_joined(message.chat.id):
       bot.send_message(message.chat.id, "Faqat X no'malumli tenglama yozing...")
     else:
-      bot.send_message(message.chat.id, "Iltimos @coding_quizz kanaliga a'zo bo'ling...\nKeyin qayta /start buyrug'ini bosing")
+      bot.send_message(message.chat.id, "Iltimos @coding_quizz ga a'zo bo'ling...\nKeyin qayta /start buyrug'ini bosing")
 
 @bot.message_handler(commands=['help'])
 def help_(message):
@@ -29,7 +35,7 @@ def help_(message):
 def send_text(message):
   if bool(message.text):
     try:
-      res = esolve((message.text).replace(" ", "").lower())
+      res = esolve((message.text).replace(" ", "").replace("^", "**").lower())
       bot.send_message(message.chat.id, f"Javob tayyor!\nX = {res}")
     except:
       bot.send_message(message.chat.id, "Xato buyruq!!!")
